@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Component;
+namespace NifaHelpers\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Network\Request;
