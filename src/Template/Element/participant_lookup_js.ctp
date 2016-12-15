@@ -6,22 +6,27 @@
             if(valLength == 4) {
                console.log('fire ajax');
                 $.ajax({
-                    url: "<?= $url ?>" + "&participant_number=" + $('#<?= $fieldId ?>-lookup').val(),
-                    headers: {'Accept':'application/json'}
+                    type: 'post',
+                    headers: {'Accept':'application/json'},
+                    url: '<?= $this->Url->build(['prefix' => false, 'plugin' => 'NifaAppsManager', 'controller' => 'Applications', 'action' => 'makeRequest'])?>',
+                    data: {
+                        contest_id:<?= $contestId ?>,
+                        url: "<?= $url ?>",
+                        participant_number: $('#<?= $fieldId ?>-lookup').val()}
                 })
                     .done(function(data){
                         console.log(data);
 
-                        if($.isEmptyObject(data.participant)) {
+                        if($.isEmptyObject(data.result.data)) {
                             alert("Participant not found...");
                             $('#<?= $fieldId ?>-name').val('');
                             $('#<?= $fieldId ?>').val('');
                             $('#<?= $fieldId ?>-team').val('');
 
                         } else {
-                            $('#<?= $fieldId ?>').val(data.participant.id);
-                            $('#<?= $fieldId ?>-name').val(data.participant.last_first);
-                            $('#<?= $fieldId ?>-team').val(data.participant.team.name);
+                            $('#<?= $fieldId ?>').val(data.result.data.participant.id);
+                            $('#<?= $fieldId ?>-name').val(data.result.data.participant.last_first);
+                            $('#<?= $fieldId ?>-team').val(data.result.data.participant.team.name);
                         }
 
                     })

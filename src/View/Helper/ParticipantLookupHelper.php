@@ -10,11 +10,11 @@ class ParticipantLookupHelper extends Helper
 
     public $helpers = ['Form'];
 
-    public function input($field, $contestId, $url, $autofocus = false, $label = null)
+    public function input($field, $contestId, $autofocus = false, $label = null)
     {
         $fieldId = str_replace(".", "-", $field);
         $auto = ($autofocus == true) ? "autofocus" : "";
-        $html = $this->_View->element('NifaHelpers.participant_lookup_js', ['fieldId' => $fieldId, 'url' => $url . 'participants/lookup?contest_id=' . $contestId]);
+        $html = $this->_View->element('NifaHelpers.participant_lookup_js', ['fieldId' => $fieldId, 'url' => 'participants/lookup', 'contestId' => $contestId]);
         $html.= $this->Form->input($field . "_lookup", ['type' => 'text', 'label' => $label, 'id' => $fieldId . "-lookup", 'autofocus' => $auto]);
         $html.= $this->Form->hidden($field . "_id", ['type' => 'text', 'label' => $label . " ID", 'id' => $fieldId]);
         $html.= $this->Form->input($field . "_name", ['label' => $label . " Name", 'id' => $fieldId . "-name", 'readonly' => 'readonly']);
