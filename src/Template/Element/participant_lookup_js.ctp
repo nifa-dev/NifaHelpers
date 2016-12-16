@@ -6,7 +6,7 @@
             if(valLength == 4) {
                console.log('fire ajax');
                 $.ajax({
-                    type: ‘get’,
+                    type: 'get',
                     headers: {'Accept':'application/json'},
                     url: '<?= $this->Url->build(['prefix' => false, 'plugin' => 'NifaAppsManager', 'controller' => 'Applications', 'action' => 'makeRequest'])?>',
                     data: {
