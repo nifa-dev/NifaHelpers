@@ -21,7 +21,7 @@ class VersionNumberHelper extends Helper {
         return $hash;
     }
 
-    public funcgion longCommitHash() {
+    public function longCommitHash() {
         exec('git log --pretty="%H" -n1 HEAD', $hash);
         return $hash;
     }
